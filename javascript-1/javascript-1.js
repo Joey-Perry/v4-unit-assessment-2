@@ -76,7 +76,8 @@ const compareNums = (num1, num2) => {
 */
 
 //CODE HERE
-const bestMovie = (movieTitle) => `${movieTitle} is the best movie ever!`;
+const bestMovie = (movie) => `${movie} is the best movie ever!`;
+// const bestMovie = (movieTitle) => movieTitle + ' is the best movie ever!';
 
 ////////////////////PROBLEM 6////////////////////
 /*
@@ -127,12 +128,13 @@ delete gameInfo.rating;
 */
 
 //CODE HERE
-  for (const key in shapes){
-      if (shapes[key] % 2 !== 0){
-          delete shapes[key];
-      }
-  }
-  
+
+for (let key in shapes){
+    if (shapes[key] % 2 !== 0){
+        delete shapes[key];
+    }
+}
+
 ////////////////////PROBLEM 9////////////////////
 
 //DO NOT EDIT CODE BELOW
@@ -173,8 +175,13 @@ const classes = [
 */
 
 //CODE HERE
-
-  
+for (let i = 0; i < classes.length; i++){
+    for (let key in classes[i]) {
+        if (classes[i][key] === true){
+            classes[i][key] = false;
+        }
+    }
+}
 ////////////////////PROBLEM 10////////////////////
 /*
     Use nested for loops to compare the letters in the lettersToPair array below.
@@ -189,7 +196,13 @@ let pairsArray = []
 //DO NOT EDIT CODE ABOVE
 
 //CODE HERE
-
+for (let i = 0; i < lettersToPair.length; i++){
+    for (let j = i + 1; j < lettersToPair.length; j++){
+        if (lettersToPair[i] === lettersToPair[j]){
+            pairsArray.push([i, j]);
+        }
+    }
+}
     
 
 //////////////////////////////////PROBLEMS 11-14//////////////////////////////////
@@ -206,7 +219,12 @@ let pairsArray = []
 */
 
 //CODE HERE
-
+function Dog(name, age, breed, tricks){
+    this.name = name;
+    this.age = age;
+    this.breed = breed;
+    this.tricks = tricks
+}
 
 /*
     Invoke your dog constructor passing in 'Fido' for the name, 3 for the age, 
@@ -215,7 +233,7 @@ let pairsArray = []
 */
 
 //CODE HERE
-  
+const fido = new Dog('Fido', 3, 'Jack Russell', ['sit', 'shake']);
 
 ////////////////////PROBLEM 12////////////////////
 /*
@@ -225,7 +243,9 @@ let pairsArray = []
 */
 
 //CODE HERE
-
+const bark = function(){
+    return `${this.name} says bark!`;
+}
 
 /*
     Invoke the call method on bark, passing in fido as the context
@@ -233,7 +253,7 @@ let pairsArray = []
 */
 
 //CODE HERE
-  
+  const fidoSpeak = bark.call(fido);
   
 ////////////////////PROBLEM 13////////////////////
 /*
@@ -244,7 +264,10 @@ let pairsArray = []
 */
 
 //CODE HERE
-
+const teachTrick= function(trick){
+    this.tricks.push(trick);
+    return this.tricks;
+}
 
 /*
     Invoke the bind method on teachTrick, passing in fido as the context and the string 'stay' as a trick.
@@ -252,7 +275,7 @@ let pairsArray = []
 */
 
 //CODE HERE
-  
+const teachStay = teachTrick.bind(fido, 'stay');
   
 ////////////////////PROBLEM 14////////////////////
 /*
@@ -263,7 +286,9 @@ let pairsArray = []
 */
 
 //CODE HERE
-
+const dogIntro = function(treat, toy){
+    return `${this.name} is a ${this.breed} that loves ${treat} and their ${toy}!`;
+}
 
 /*
     Invoke the apply method on dogIntro, passing in fido as the context 
@@ -272,7 +297,7 @@ let pairsArray = []
 */
 
 //CODE HERE
-  
+const fidoIntro = dogIntro.apply(fido, ['chicken', 'tennis ball']);
 
 ////////////////////PROBLEM 15////////////////////
 /*
@@ -282,8 +307,13 @@ let pairsArray = []
 */
 
 //CODE HERE
-
-  
+function Phone(brand, model, storage, color, sold){
+    this.brand = brand;
+    this.model = model;
+    this.storage = storage;
+    this.color = color;
+    this.sold = sold;
+}
 /*
     Next make three new phones using your constructor function.
     Save them to the variables below (make sure you uncomment them).
@@ -296,11 +326,11 @@ let pairsArray = []
 */
 
 //CODE HERE
-  // let phone1 = 
+  let phone1 = new Phone('Samsung', 'A10e', 128, 'black', false);
   
-  // let phone2 = 
+  let phone2 = new Phone('Apple', 'iPhone 6', 256, 'white', false);
   
-  // let phone3 = 
+  let phone3 = new Phone('Samsung', 'Galaxy', 256, 'silver', false);
   
 /*
     Last, add a prototype method to Phone.
@@ -312,4 +342,7 @@ let pairsArray = []
 
 //CODE HERE
 
-  
+Phone.prototype.sell = function(){
+    this.sold = true;
+    return `${this.brand} ${this.model} has been sold.`;
+}
